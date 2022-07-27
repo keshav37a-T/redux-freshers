@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "./redux/mainSlice";
 
 function App() {
+  const counterValue = useSelector((state) => state.counterValue);
+  const dispatch = useDispatch();
+
+  console.log("mainSliceState: ", counterValue);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">App</div>
+      <div>
+        <button onClick={() => dispatch(increment())}>+Increment</button>
+        <button onClick={() => dispatch(decrement())}>-Decrement</button>
+      </div>
+      <div>Value: {counterValue}</div>
     </div>
   );
 }
